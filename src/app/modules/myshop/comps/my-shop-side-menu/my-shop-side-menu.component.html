@@ -1,0 +1,35 @@
+
+<ion-toolbar>
+  <ion-item [routerLink]="['/myshop/Categories']" (click)="hideShopMenu()"> 
+    <ion-icon name="duplicate-outline" slot="start"></ion-icon>
+    <ion-label>Categories</ion-label>
+  </ion-item>
+</ion-toolbar>
+<ion-toolbar>
+  <ion-item [routerLink]="['/myshop/Brands']" (click)="hideShopMenu()"> 
+    <ion-icon name="cube-outline" slot="start"></ion-icon>
+    <ion-label>Brands</ion-label>
+  </ion-item>
+</ion-toolbar>
+
+<ion-toolbar >
+  <ion-item [routerLink]="['/shop/Products']" (click)="hideShopMenu()"> 
+    <ion-icon name="albums-outline" slot="start"></ion-icon>
+    <ion-label>Orders</ion-label>
+  </ion-item>
+</ion-toolbar>
+<ion-toolbar>
+  <ion-item [routerLink]="['/myshop/shopInfo']" (click)="hideShopMenu()"> 
+    <ion-icon name="information-circle-outline" slot="start"></ion-icon>
+    <ion-label>Shop Info</ion-label>
+  </ion-item>
+</ion-toolbar>
+
+
+
+  <ion-toolbar >
+    <ion-item [routerLink]="['/shop']"> 
+      <ion-icon name="arrow-back-outline" slot="start"></ion-icon>
+      <ion-label>Buyyer Mode</ion-label>
+    </ion-item>
+  </ion-toolbar>

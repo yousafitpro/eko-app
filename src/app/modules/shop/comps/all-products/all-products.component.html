@@ -1,0 +1,117 @@
+<!-- Default Searchbar -->
+<div style="background-color:#faf9f7">
+  <ion-grid>
+  
+    <ion-row style="background-color: white;">
+      <ion-col size="2">
+      </ion-col>
+      <ion-col size="6" >
+        <ion-input (keyup)="keupsearch()" style="border-bottom-style: groove;" placeholder="Search here..."  [(ngModel)]="autocomplete"  ></ion-input>
+      </ion-col>
+      <ion-col size="2" >
+        <ion-button  (click)="search()">
+          <ion-icon name="search" style="font-size:20px;"></ion-icon>
+        </ion-button>
+  
+      </ion-col>
+      <ion-col class="myflex" size="2">
+        <ion-icon *ngIf="!isLoading" (click)="refresh()"  name="refresh-outline" style="font-size:20px;"></ion-icon>
+        <ion-spinner  name="circles" *ngIf="isLoading"></ion-spinner>
+      </ion-col>
+    </ion-row>
+  
+  </ion-grid>
+  
+  
+  
+  
+      
+  
+   <div  style="height:70vh; overflow:auto;">
+  
+  <ion-grid >
+
+    <ion-row>
+
+   <div  *ngFor="let product of AllProducts;" style="width:50%; " >
+    <div   style="margin-left: 2%; background-color: white; width: 98%; margin-top: 2%; padding:5px;">
+     <div *ngIf="product.isonsale==1" >
+      
+        <ion-label style=" background-color: #a3350d; padding: 5px; color: white;">Sale</ion-label>
+  
+     </div>
+     <br>
+     <div class="myflex" style="">
+      <img (click)="viewImage(product.image)" src="{{product.image}}" style="max-height: 15vh; ">
+     </div> 
+      <ion-label style="text-align: center;">
+        <h2>{{product.name}}</h2>
+        <div class="price-wrapper" *ngIf="product.isonsale==1">
+          <div class="price-slash"></div>
+          <h3 class="price" style="color: #ed6b07;">RS.{{product.rprice+(product.rprice/100*product.tax)}}</h3>
+          
+        </div>
+        
+        <h3 *ngIf="product.isonsale==1">PKR-{{product.rprice-(product.rprice/100*product.discount)}}+{{(product.rprice/100*product.tax)}}={{product.rprice-(product.rprice/100*product.discount)+(product.rprice/100*product.tax)}}</h3>
+        <h3 *ngIf="product.isonsale==0">PKR-{{product.rprice-(product.rprice/100*product.discount)+(product.rprice/100*product.tax)}}</h3>
+  
+        <h3 style="color: #eda807;">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <!-- <small style="color: gray;">()</small> -->
+        </h3>
+        <h3 *ngIf="product.isinstallment==1">Installment Available</h3>
+        <div class="myflex">
+          <p (click)="shareShop(product.sadmin,product.id)"><ion-icon name="share-social-outline"></ion-icon></p>
+          <p><ion-icon style="margin-left: 10px;" name="thumbs-up-outline"></ion-icon></p>
+          <p><ion-icon style="margin-left: 10px;" name="thumbs-down-outline"></ion-icon></p>
+          <ion-chip  style="float: right;">
+            <ion-label  [routerLink]="['/shop/'+product.sadmin+'/Products/'+product.id+'/0/Details']">View</ion-label>
+          </ion-chip>
+        </div>
+
+      </ion-label>
+    </div>
+  
+   </div>
+    </ion-row>
+    </ion-grid> 
+  
+  </div>
+  </div>
+  <ion-footer style="position: absolute;bottom: 0px; background-color:white; ">
+    <ion-grid style="padding:0px;">
+      <ion-row>
+        <ion-col size="3" >
+        </ion-col>
+        <ion-col size="6" >
+          <ion-grid >
+            <ion-row>
+              <ion-col size="5" >
+                <ion-button (click)="PreviousPage()"  fill="outline" style="font-size: 3vw;">
+                  <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+                </ion-button>
+                </ion-col>
+                <ion-col size="2" >
+                </ion-col>
+                <ion-col size="5"  >
+                  <ion-button  (click)="nextPage()" fill="outline" style="font-size: 3vw;">
+                    <ion-icon slot="icon-only" name="arrow-forward-outline"></ion-icon>
+                  </ion-button>
+                </ion-col>
+                </ion-row>
+                </ion-grid>
+     
+      
+        </ion-col>
+        <ion-col size="3" >
+        </ion-col>
+        </ion-row>
+        </ion-grid>
+  </ion-footer>
+  
+  
+  

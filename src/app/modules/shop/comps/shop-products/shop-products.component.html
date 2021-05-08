@@ -1,0 +1,132 @@
+<!-- Default Searchbar -->
+<div style="background-color:#faf9f7">
+  <ion-grid>
+  
+    <ion-row style="background-color: white;">
+      <ion-col class="myflex" size="2">
+        <ion-icon [routerLink]="['/shop/Shops']"  name="arrow-back-outline" style="font-size:20px;"></ion-icon>
+  
+      </ion-col>
+      <ion-col size="6" >
+        <ion-input (keyup)="keupsearch()" style="border-bottom-style: groove;" placeholder="Search here..."  [(ngModel)]="autocomplete"  ></ion-input>
+      </ion-col>
+      <ion-col size="2" >
+        <ion-button  (click)="search()">
+          <ion-icon name="search" style="font-size:20px;"></ion-icon>
+        </ion-button>
+       
+      </ion-col>
+      <ion-col class="myflex" size="2">
+        <ion-icon *ngIf="!isLoading" (click)="refresh()"  name="refresh-outline" style="font-size:20px;"></ion-icon>
+        <ion-spinner  name="circles" *ngIf="isLoading"></ion-spinner>
+      </ion-col>
+    </ion-row>
+  
+  </ion-grid>
+  
+  
+
+
+    <ion-label>
+      <div class="myflex" *ngIf="shopInfo">
+{{shopInfo.companyname}}
+      </div>
+
+    </ion-label>
+
+  
+      
+  
+   <div  style="height:65vh; overflow:auto;">
+  
+  <ion-grid >
+  
+    <ion-row>
+   <div  *ngFor="let product of AllProducts;" style="width:50%; " >
+    <div   style="margin-left: 2%; background-color: white; width: 98%; margin-top: 2%; padding:5px;">
+     <div *ngIf="product.isonsale==1" >
+      
+        <ion-label style=" background-color: #a3350d; padding: 5px; color: white;">Sale</ion-label>
+  
+     </div>
+     <br>
+     <div class="myflex" style="">
+      <img (click)="viewImage(product.image)" src="{{product.image}}" style="max-height: 15vh; ">
+     </div> 
+      <ion-label style="text-align: center;">
+        <h2>{{product.name}}</h2>
+        <div class="price-wrapper" *ngIf="product.isonsale==1">
+          <div class="price-slash"></div>
+          <h3 class="price" style="color: #ed6b07;">RS.{{product.rprice+(product.rprice/100*product.tax)}}</h3>
+          
+        </div>
+        <h3 *ngIf="product.isonsale==1">PKR-{{product.rprice-(product.rprice/100*product.discount)}}+{{(product.rprice/100*product.tax)}}={{product.rprice-(product.rprice/100*product.discount)+(product.rprice/100*product.tax)}}</h3>
+        <h3 *ngIf="product.isonsale==0">PKR-{{product.rprice-(product.rprice/100*product.discount)+(product.rprice/100*product.tax)}}</h3>
+  
+        <h3 style="color: #eda807;">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <!-- <small style="color: gray;">(122)</small> -->
+        
+        </h3>
+        <h3 *ngIf="product.isinstallment==1">Installment Available</h3>
+        <div class="myflex">
+          <p [routerLink] (click)="shareShop(product.sadmin,product.id)"><ion-icon name="share-social-outline"></ion-icon></p>
+          <p><ion-icon style="margin-left: 10px;" name="thumbs-up-outline"></ion-icon></p>
+          <p><ion-icon style="margin-left: 10px;" name="thumbs-down-outline"></ion-icon></p>
+          <ion-chip  style="float: right;">
+            <ion-label  [routerLink]="['/shop/'+product.sadmin+'/Products/'+product.id+'/1/Details']">View</ion-label>
+          </ion-chip>
+        </div>
+      </ion-label>
+    </div>
+  
+   </div>
+    </ion-row>
+    </ion-grid> 
+  
+  </div>
+  </div>
+  <ion-footer>
+    <ion-grid style="padding:0px;">
+      <ion-row>
+
+
+          <ion-grid >
+            <ion-row>
+              <ion-col size="4" >
+                <select [(ngModel)]="Scategory" (change)="category()" class="form-control">
+                  <option value="">--All--</option>
+                  <option value="{{c.id}}" *ngFor="let c of Categories">{{c.name}}</option>
+                </select>
+              </ion-col>
+              <ion-col size="4" >
+                <select [(ngModel)]="Sbrand" (change)="brand()" class="form-control">
+                  <option value="">--All--</option>
+                  <option value="{{b.id}}" *ngFor="let b of Brands">{{b.name}}</option>
+                </select>
+              </ion-col>
+              <ion-col size="2" >
+                <ion-button (click)="PreviousPage()"  fill="outline" style="font-size: 3vw;">
+                  <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+                </ion-button>
+                </ion-col>
+                <ion-col size="2"  >
+                  <ion-button  (click)="nextPage()" fill="outline" style="font-size: 3vw;">
+                    <ion-icon slot="icon-only" name="arrow-forward-outline"></ion-icon>
+                  </ion-button>
+                </ion-col>
+                </ion-row>
+                </ion-grid>
+     
+      
+
+        </ion-row>
+        </ion-grid>
+  </ion-footer>
+  
+  
+  

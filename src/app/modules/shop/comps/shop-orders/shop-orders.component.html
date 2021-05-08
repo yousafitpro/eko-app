@@ -1,0 +1,120 @@
+<!-- Default Searchbar -->
+
+<ion-grid>
+  <ion-row>
+    <ion-col size="2">
+
+    </ion-col>
+    <ion-col size="6" >
+      <ion-input (keyup)="keupsearch()" style="border-bottom-style: groove;" placeholder="Search here..."  [(ngModel)]="autocomplete"  ></ion-input>
+    </ion-col>
+    <ion-col size="2" >
+      <ion-button  (click)="search()">
+        <ion-icon name="search" style="font-size:20px;"></ion-icon>
+      </ion-button>
+
+    </ion-col>
+    <ion-col class="myflex" size="2">
+      <ion-icon   *ngIf="!isLoading" (click)="refresh()" name="refresh-outline" style="font-size:20px;"></ion-icon>
+      <ion-spinner  name="circles" *ngIf="isLoading"></ion-spinner>
+    </ion-col>
+  </ion-row>
+
+</ion-grid>
+
+
+
+
+<ion-list-header>
+
+
+
+</ion-list-header>
+
+ <div   style="height:62vh; overflow:auto;">
+  <ion-list>
+
+
+    <ion-item *ngFor="let o of Orders;" >
+      <ion-label  (click)="showDeletDialog()" [routerLink]="['/myshop/'+o.id+'/'+'0'+'/Products']">
+        <h2>{{o.created_at|date:'short'}}
+          <small *ngIf="o.isselfadded=='1'">(Seller)</small>
+          <small *ngIf="o.isselfadded=='0'">(You)</small>
+        </h2>
+        <h2>
+          <small style="color: chocolate;">{{o.shop_email}}</small>
+
+        </h2>
+        <label style="font-size: 15px; margin-left: 5px; color: darkgrey;"> Order-ID: <small>{{o.id}}</small></label>
+        <label style="font-size: 15px; margin-left: 5px; color: darkgrey;"> Products: <small>{{ o.products|number}}</small></label>
+        <br>
+        <label style="font-size: 15px; color: darkgrey;">Total: <small>{{o.payment|number}}</small></label>
+        <label style="font-size: 15px; margin-left: 5px; color: darkgrey;"> Paid: <small>{{ o.paid_payment|number}}</small></label>
+
+
+        <label *ngIf="o.remaining_payment>0" style="font-size: 15px; margin-left: 5px; color: darkgrey;"> Remaining: <small>{{ o.remaining_payment|number}}</small></label>
+
+      </ion-label>
+   
+        <ion-button shape="round" fill="outline" (click)="presentPopover(o.id)">
+          <ion-icon name="ellipsis-horizontal-outline"></ion-icon>
+        </ion-button>
+  
+    </ion-item>
+    </ion-list>
+<!-- <ion-grid >
+  <ion-row>
+    <ion-col size="6" *ngFor="let shop of Shops;">
+      <ion-card class="">
+        <ion-grid>
+          <ion-row style="padding:2vw;">
+            <ion-col size="5">
+              <div style="width: 100%; max-width: 60px;" ><ion-img src="assets/icon/favicon.png" style="width: 100%;"></ion-img></div> 
+            </ion-col>
+            <ion-col size="7">
+              <strong>{{shop.companyname}}</strong>
+            </ion-col>
+          </ion-row>
+          <ion-row  >
+            <ion-col size="12" style="text-align: center;">
+              <strong>PKR- <small>{{shop.companyphone}}</small></strong>
+            </ion-col>
+          </ion-row>
+          </ion-grid>
+      </ion-card>
+    </ion-col>
+    
+  </ion-row>
+  </ion-grid>  -->
+
+</div>
+<ion-footer>
+  <ion-grid style="padding:0px;">
+    <ion-row>
+      <ion-col size="3" >
+      </ion-col>
+      <ion-col size="6" >
+        <ion-grid >
+          <ion-row>
+            <ion-col size="6" >
+              <ion-button (click)="PreviousPage()"  fill="outline" style="font-size: 3vw;">
+                <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+              </ion-button>
+              </ion-col>
+              <ion-col size="6"  >
+                <ion-button  (click)="nextPage()" fill="outline" style="font-size: 3vw;">
+                  <ion-icon slot="icon-only" name="arrow-forward-outline"></ion-icon>
+                </ion-button>
+              </ion-col>
+              </ion-row>
+              </ion-grid>
+   
+    
+      </ion-col>
+      <ion-col size="3" >
+      </ion-col>
+      </ion-row>
+      </ion-grid>
+</ion-footer>
+
+

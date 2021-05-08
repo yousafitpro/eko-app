@@ -1,0 +1,50 @@
+
+<ion-content >
+  <ion-grid class="flex">
+    <ion-grid >
+      <ion-row >
+          <ion-col size="1"></ion-col>
+          <ion-col size="10"  >
+             
+                   <div style="width: 100%;">
+                      <div class="myflex">
+                        <img src="assets/icon/it_logo.png">
+                      </div>
+                   </div>
+                   <div >
+                     <ion-item>
+                      <ion-label position="floating">Shop Name...</ion-label>
+                      <ion-input value="{{shop.companyname}}" #name></ion-input>
+                     </ion-item>
+                     <ion-item>
+                      <ion-label position="floating">Address...</ion-label>
+                      <ion-input value="{{shop.companyaddress}}"  #address></ion-input>
+                     </ion-item> 
+                     <ion-item>
+                      <ion-label position="floating">Shop Phone..</ion-label>
+                      <ion-input value="{{shop.companyphone}}" #phone></ion-input>
+                     </ion-item> 
+                     <ion-item>
+                      <ion-label position="floating">Owner Mobile...</ion-label>
+                      <ion-input value="{{shop.mobile}}"  #mobile></ion-input>
+                     </ion-item> 
+                       <div class="flex" style="height: 100px;">
+                        
+                         <ion-button color="success" (click)="saveChanges(name.value,address.value,phone.value,mobile.value)">Save Changes</ion-button>
+                      </div>
+                    </div>
+                    
+          </ion-col>
+          <ion-col size="1"></ion-col>
+      </ion-row>
+      <ion-row>
+        <div style="width: 100%;" class="myflex">
+          <ion-button (click)="getLocation()" color="warning"><ion-icon name="reload-outline" style="margin-right: 5px;"></ion-icon> Reset Location</ion-button>
+       
+        </div>
+        <div style="text-align: center; width: 100%;">
+          <a [routerLink] (click)="viewLocation()">View</a>
+        </div>
+      </ion-row>
+  </ion-grid>
+  

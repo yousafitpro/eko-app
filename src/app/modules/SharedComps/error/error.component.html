@@ -1,0 +1,16 @@
+
+<ion-content >
+  <ion-toolbar>
+    <div (click)="close()"  slot="end" style="margin-right: 5vw; font-size: 30px;">
+      <ion-icon color="danger"  name="close-circle-outline"></ion-icon>
+    </div>
+  </ion-toolbar>
+  <div style="padding:10px;">
+  <h2>Please Check Your Internet Connection</h2>
+  <h5>Error-Message</h5>
+  <small>{{error}}</small>
+  <h5>Error-statusText</h5>
+  <small>{{statusText}}</small>
+  <h5>{{message}}</h5>
+  </div>
+</ion-content>

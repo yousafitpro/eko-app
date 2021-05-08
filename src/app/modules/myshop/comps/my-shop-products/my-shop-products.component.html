@@ -1,0 +1,125 @@
+<!-- Default Searchbar -->
+
+<ion-grid>
+  <ion-row>
+    <ion-col size="2">
+      <ion-icon *ngIf="cateId!=''" [routerLink]="['/myshop/Categories']"  name="arrow-back-outline" style="font-size:20px;"></ion-icon>
+      <ion-icon *ngIf="brandId!=''" [routerLink]="['/myshop/Brands']"  name="arrow-back-outline" style="font-size:20px;"></ion-icon>
+
+    </ion-col>
+    <ion-col size="6" >
+      <ion-input (keyup)="keupsearch()" style="border-bottom-style: groove;" placeholder="Search here..."  [(ngModel)]="autocomplete"  ></ion-input>
+    </ion-col>
+    <ion-col size="2" >
+      <ion-button  (click)="search()">
+        <ion-icon name="search" style="font-size:20px;"></ion-icon>
+      </ion-button>
+
+    </ion-col>
+    <ion-col size="2" class="myflex">
+      <ion-icon *ngIf="!isLoading" (click)="getAll()" name="refresh-outline" style="font-size:20px;"></ion-icon>
+      <ion-spinner  name="circles" *ngIf="isLoading"></ion-spinner>
+    </ion-col>
+  </ion-row>
+
+</ion-grid>
+
+
+
+
+<ion-list-header >
+
+  <ion-chip *ngIf="cateId!=''"  outline color="tertiary" [routerLink]="['/myshop/'+cateId+'/addProduct']">
+    <ion-icon name="add-circle-outline"></ion-icon>
+    <ion-label>Add</ion-label>
+  </ion-chip>
+  <ion-chip (click)="activeProducts()"  outline color="tertiary" >
+    <ion-icon name="checkmark-outline"></ion-icon>
+    <ion-label>Active</ion-label>
+  </ion-chip>
+  <ion-chip (click)="inactiveProducts()"  outline color="tertiary">
+    <ion-icon name="close-circle-outline"></ion-icon>
+    <ion-label>inactive</ion-label>
+  </ion-chip>
+</ion-list-header>
+
+ <div   style="height:62vh; overflow:auto;">
+  <ion-list>
+
+
+    <ion-item *ngFor="let product of products;">
+      <div style="width: 15vw; height:15vw">
+        <img (click)=" viewImage(product.image)" style="width: 100%; height: 100%;" src="{{product.image}}">
+      </div>
+      <ion-label  >
+        <h2 style="margin-left: 5px;">{{product.name}}
+           <small *ngIf="product.status==0" style="color: red;">Inactive</small>
+           <small *ngIf="product.isonsale==1" style="color: #702206;"> | Sale</small>
+          </h2>
+        <label style="font-size: 15px; color: darkgrey; margin-left: 5px;">Quantity: <small>{{product.quantity}}</small></label>
+        <label style="font-size: 15px; margin-left: 5px; color: darkgrey;"> Price: <small>{{product.rprice}}</small></label>
+        <small *ngIf="product.quantity<=product.osl" style="color: #e84f17;"> Out of Stock</small>
+      </ion-label>
+   
+        <ion-button shape="round" fill="outline" (click)="presentPopover(product.id)">
+          <ion-icon name="ellipsis-horizontal-outline"></ion-icon>
+        </ion-button>
+  
+    </ion-item>
+    </ion-list>
+<!-- <ion-grid >
+  <ion-row>
+    <ion-col size="6" *ngFor="let shop of Shops;">
+      <ion-card class="">
+        <ion-grid>
+          <ion-row style="padding:2vw;">
+            <ion-col size="5">
+              <div style="width: 100%; max-width: 60px;" ><ion-img src="assets/icon/favicon.png" style="width: 100%;"></ion-img></div> 
+            </ion-col>
+            <ion-col size="7">
+              <strong>{{shop.companyname}}</strong>
+            </ion-col>
+          </ion-row>
+          <ion-row  >
+            <ion-col size="12" style="text-align: center;">
+              <strong>PKR- <small>{{shop.companyphone}}</small></strong>
+            </ion-col>
+          </ion-row>
+          </ion-grid>
+      </ion-card>
+    </ion-col>
+    
+  </ion-row>
+  </ion-grid>  -->
+
+</div>
+<ion-footer>
+  <ion-grid style="padding:0px;">
+    <ion-row>
+      <ion-col size="3" >
+      </ion-col>
+      <ion-col size="6" >
+        <ion-grid >
+          <ion-row>
+            <ion-col size="6" >
+              <ion-button (click)="PreviousPage()"  fill="outline" style="font-size: 3vw;">
+                <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+              </ion-button>
+              </ion-col>
+              <ion-col size="6"  >
+                <ion-button  (click)="nextPage()" fill="outline" style="font-size: 3vw;">
+                  <ion-icon slot="icon-only" name="arrow-forward-outline"></ion-icon>
+                </ion-button>
+              </ion-col>
+              </ion-row>
+              </ion-grid>
+   
+    
+      </ion-col>
+      <ion-col size="3" >
+      </ion-col>
+      </ion-row>
+      </ion-grid>
+</ion-footer>
+
+

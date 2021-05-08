@@ -1,0 +1,112 @@
+<!-- Default Searchbar -->
+
+<ion-grid>
+  <ion-row>
+    <ion-col size="2">
+    </ion-col>
+    <ion-col size="6" >
+      <ion-input (keyup)="keupsearch()" style="border-bottom-style: groove;" placeholder="Search here..."  [(ngModel)]="autocomplete"  ></ion-input>
+    </ion-col>
+    <ion-col size="2" >
+      <ion-button  (click)="search()">
+        <ion-icon name="search" style="font-size:20px;"></ion-icon>
+      </ion-button>
+
+    </ion-col>
+    <ion-col class="myflex" size="2">
+      <ion-icon *ngIf="!isLoading"(click)="refresh()"  name="refresh-outline" style="font-size:20px;"></ion-icon>
+      <ion-spinner  name="circles" *ngIf="isLoading"></ion-spinner>
+    </ion-col>
+  </ion-row>
+
+</ion-grid>
+
+
+
+
+    
+
+ <div   style="height:70vh; overflow:auto;">
+  <ion-list>
+    <ion-list-header>
+      Top Seller's Shops
+    </ion-list-header>
+
+    <ion-item *ngFor="let shop of Shops;">
+      <ion-avatar slot="start">
+        <img src="assets/icon/favicon.png">
+      </ion-avatar>
+      <ion-label>
+        <h2>{{shop.companyname}}</h2>
+        <p>{{shop.owner_email}}</p>
+        <p>{{shop.companyaddress}}</p>
+        <div class="d-flex">
+        <p (click)="shareShop(shop.id)"><ion-icon name="share-social-outline"></ion-icon></p>
+        <p><ion-icon style="margin-left: 10px;" name="thumbs-up-outline"></ion-icon></p>
+        <p><ion-icon style="margin-left: 10px;" name="thumbs-down-outline"></ion-icon></p>
+        <p (click)="goTo(shop.latitude,shop.longitude)"><ion-icon style="margin-left: 10px;" name="locate-outline"></ion-icon></p>
+        
+      </div>
+      </ion-label>
+      
+      <ion-button [routerLink]="['/shop/'+shop.sadmin+'/Products']" slot="end">
+        Visit
+      </ion-button>
+    </ion-item>
+    </ion-list>
+<!-- <ion-grid >
+  <ion-row>
+    <ion-col size="6" *ngFor="let shop of Shops;">
+      <ion-card class="">
+        <ion-grid>
+          <ion-row style="padding:2vw;">
+            <ion-col size="5">
+              <div style="width: 100%; max-width: 60px;" ><ion-img src="assets/icon/favicon.png" style="width: 100%;"></ion-img></div> 
+            </ion-col>
+            <ion-col size="7">
+              <strong>{{shop.companyname}}</strong>
+            </ion-col>
+          </ion-row>
+          <ion-row  >
+            <ion-col size="12" style="text-align: center;">
+              <strong>PKR- <small>{{shop.companyphone}}</small></strong>
+            </ion-col>
+          </ion-row>
+          </ion-grid>
+      </ion-card>
+    </ion-col>
+    
+  </ion-row>
+  </ion-grid>  -->
+
+</div>
+<ion-footer>
+  <ion-grid style="padding:0px;">
+    <ion-row>
+      <ion-col size="3" >
+      </ion-col>
+      <ion-col size="6" >
+        <ion-grid >
+          <ion-row>
+            <ion-col size="6" >
+              <ion-button (click)="PreviousPage()"  fill="outline" style="font-size: 3vw;">
+                <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+              </ion-button>
+              </ion-col>
+              <ion-col size="6"  >
+                <ion-button  (click)="nextPage()" fill="outline" style="font-size: 3vw;">
+                  <ion-icon slot="icon-only" name="arrow-forward-outline"></ion-icon>
+                </ion-button>
+              </ion-col>
+              </ion-row>
+              </ion-grid>
+   
+    
+      </ion-col>
+      <ion-col size="3" >
+      </ion-col>
+      </ion-row>
+      </ion-grid>
+</ion-footer>
+
+

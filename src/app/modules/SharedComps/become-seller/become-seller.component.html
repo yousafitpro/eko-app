@@ -1,0 +1,41 @@
+
+<ion-content >
+  <ion-grid class="flex">
+    <ion-grid >
+      <ion-row >
+          <ion-col size="1"></ion-col>
+          <ion-col size="10"  >
+             
+                   <div style="width: 100%;">
+                      <div class="myflex">
+                        <img src="assets/icon/it_logo.png">
+                      </div>
+                   </div>
+                   <div >
+                     <ion-item>
+                      <ion-label position="floating">Shop Name...</ion-label>
+                      <ion-input #name></ion-input>
+                     </ion-item>
+                     <ion-item>
+                      <ion-label position="floating">Address...</ion-label>
+                      <ion-input  #address></ion-input>
+                     </ion-item> 
+                     <ion-item>
+                      <ion-label position="floating">Shop Phone..</ion-label>
+                      <ion-input #phone></ion-input>
+                     </ion-item> 
+                     <ion-item>
+                      <ion-label position="floating">Owner Mobile...</ion-label>
+                      <ion-input  #mobile></ion-input>
+                     </ion-item> 
+                       <div class="flex" style="height: 100px;">
+                        
+                         <ion-button (click)="register(name.value,address.value,phone.value,mobile.value)">Become Seller</ion-button>
+                      </div>
+                    </div>
+                    
+          </ion-col>
+          <ion-col size="1"></ion-col>
+      </ion-row>
+  </ion-grid>
+  

@@ -1,0 +1,81 @@
+<!-- Default Searchbar -->
+<ion-toolbar>
+  <div (click)="close()"  slot="end" style="margin-right: 5vw; font-size: 30px;">
+    <ion-icon color="danger"  name="close-circle-outline"></ion-icon>
+  </div>
+</ion-toolbar>
+
+
+
+
+<ion-list-header >
+
+  <ion-label  >
+    <label style="font-size: 15px; color: darkgrey;">Items: <small style="color:#eb6134">{{TItems}}</small></label>
+    <label style="font-size: 15px; color: darkgrey; margin-left:10px;"> Pay: <small style="color:#eb6134"> {{TTotalBil}}</small></label>
+
+ 
+  </ion-label>
+</ion-list-header>
+
+ <div   style="height:80vh; background-colr:red; overflow:auto;">
+  <ion-list>
+
+
+    <ion-row>
+      <ion-col size="5">
+      </ion-col>
+      <ion-col size="2">
+        <ion-spinner  name="circles" *ngIf="isLoading"></ion-spinner>
+      </ion-col>
+      <ion-col size="5">
+      </ion-col>
+    </ion-row>
+    <ion-item *ngFor="let item of List;">
+      <div style="width: 15vw; height:15vw">
+        <img style="width: 100%;  " src="{{item.image}}">
+      </div>
+
+        <h4 style="font-size: 15px;">{{item.name}} </h4>
+        <label style="font-size: 15px; color: darkgrey; margin-left:10px;">Quantity: <small style="color:#eb6134">{{item.quantity}}</small></label>
+        <label style="font-size: 15px; color: darkgrey; margin-left:10px;">Price: <small style="color:#eb6134">{{item.price}}</small></label>
+        <label style="font-size: 15px; color: darkgrey; margin-left:10px;">Total: <small style="color:#eb6134">{{item.total}}</small></label>
+
+     
+  
+   
+        <ion-button slot="end" (click)="removeProduct(item.id)" color="danger" shape="round" fill="outline" >
+          <ion-icon name="close-circle-outline"></ion-icon>
+        </ion-button>
+  
+    </ion-item>
+    </ion-list>
+<!-- <ion-grid >
+  <ion-row>
+    <ion-col size="6" *ngFor="let shop of Shops;">
+      <ion-card class="">
+        <ion-grid>
+          <ion-row style="padding:2vw;">
+            <ion-col size="5">
+              <div style="width: 100%; max-width: 60px;" ><ion-img src="assets/icon/favicon.png" style="width: 100%;"></ion-img></div> 
+            </ion-col>
+            <ion-col size="7">
+              <strong>{{shop.companyname}}</strong>
+            </ion-col>
+          </ion-row>
+          <ion-row  >
+            <ion-col size="12" style="text-align: center;">
+              <strong>PKR- <small>{{shop.companyphone}}</small></strong>
+            </ion-col>
+          </ion-row>
+          </ion-grid>
+      </ion-card>
+    </ion-col>
+    
+  </ion-row>
+  </ion-grid>  -->
+
+</div>
+
+
+

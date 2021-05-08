@@ -1,0 +1,151 @@
+<!-- Default Searchbar -->
+
+
+<ion-grid>
+  <ion-row>
+    <ion-col size="2">
+  <ion-icon *ngIf="isShopPath" [routerLink]="['/shop/'+product.sadmin+'/Products']" name="arrow-back-outline" style="font-size:20px;"></ion-icon>
+  <ion-icon *ngIf="!isShopPath" [routerLink]="['/shop/Products']" name="arrow-back-outline" style="font-size:20px;"></ion-icon>
+
+</ion-col>
+   <ion-col size="10">
+
+   </ion-col>
+</ion-row>
+</ion-grid>
+    
+
+ <div  >
+
+<ion-grid >
+  <ion-row>
+    <ion-col size="5">
+    </ion-col>
+    <ion-col size="2">
+      <ion-spinner  name="circles" *ngIf="isLoading"></ion-spinner>
+    </ion-col>
+    <ion-col size="5">
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="12" >
+      <div class="" >
+        <ion-grid>
+          <ion-row style="padding:2vw;">
+            <ion-col size="6">
+              <div *ngIf="product.isonsale==1" >
+      
+                <ion-label style=" background-color: #a3350d; padding: 5px; color: white;">Sale</ion-label>
+          
+             </div>
+              <div (click)="viewImage(product.image)" style="width: 100%;" ><ion-img src="{{product.image}}" style="width: 100%;"></ion-img></div> 
+     
+          
+            </ion-col>
+            <ion-col size="6">
+              <ion-label >
+                <strong>{{product.name}}</strong><br>
+                <div class="price-wrapper" *ngIf="product.isonsale==1">
+                  <div class="price-slash"></div>
+                  <h3 class="price" style="color: #ed6b07;">RS.{{product.rprice+(product.rprice/100*product.tax)}}</h3>
+                  
+                </div>
+                <br>
+                <h3 *ngIf="product.isonsale==1">PKR-{{product.rprice-(product.rprice/100*product.discount)}}+{{(product.rprice/100*product.tax)}}={{product.rprice-(product.rprice/100*product.discount)+(product.rprice/100*product.tax)}}</h3>
+                <h3 *ngIf="product.isonsale==0">PKR-{{product.rprice-(product.rprice/100*product.discount)+(product.rprice/100*product.tax)}}</h3>
+                <h3 *ngIf="product.isinstallment==1">Installment Available</h3>
+              </ion-label>
+              <ion-label style="color:#FF9529" >
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star"></ion-icon><br>
+              </ion-label>
+              
+              <br><br>
+                <ion-row>
+                  <ion-col size="4">
+                    <input type="number" #quantity style="width: 40px; height: 42px;">
+                  </ion-col>
+                  <ion-col size="8">
+                    <ion-button (click)="addToCart(quantity.value)" style="font-size:3vw">Add to Cart</ion-button>
+                  </ion-col>
+                </ion-row>
+
+                <br>
+             <ion-row>
+               
+              <div class="myflex">
+                <p (click)="shareShop(product.sadmin,product.id)"><ion-icon name="share-social-outline"></ion-icon></p>
+                <p><ion-icon style="margin-left: 10px;" name="thumbs-up-outline"></ion-icon></p>
+                <p><ion-icon style="margin-left: 10px;" name="thumbs-down-outline"></ion-icon></p>
+                </div>
+             </ion-row>
+            </ion-col>
+          </ion-row>
+  
+          </ion-grid>
+        </div>
+    </ion-col>
+    
+  </ion-row>
+  <ion-item-divider *ngIf="issattribute" color="secondary">
+    <ion-label>
+      More About Product
+    </ion-label>
+  </ion-item-divider>
+  <br>
+  <div *ngIf="issattribute">
+    <div  *ngFor="let attr of attributes" style="float: none;">
+
+      <ion-label > {{attr.title}}: </ion-label> <small> {{attr.value}}</small><br>
+    
+    
+    
+    </div><hr>
+  </div>
+
+  <ion-row  >
+    <ion-col size="12" style="">
+    <ion-label>
+      <h2>Description</h2>
+      <small>
+        {{product.shortdescription}}
+      </small>
+      <h2>Detailed Info About Product</h2>
+      <small>
+        {{product.longdescription}}
+      </small>
+    </ion-label>
+    </ion-col>
+  </ion-row>
+
+  <br>
+  <ion-row>
+    <ion-item-divider color="secondary">
+      <ion-label>
+        Shop Info
+      </ion-label>
+    </ion-item-divider>
+    <ion-label>
+      <br>
+      <ion-icon name="home-outline" slot="start"></ion-icon>
+    <ion-label> {{shopInfo.companyname}}</ion-label><br>
+    <ion-icon name="mail-outline" slot="start"></ion-icon>
+    <ion-label> {{shopInfo.shopemail}}</ion-label><br>
+    <ion-icon name="call-outline" slot="start"></ion-icon>
+    <ion-label> {{shopInfo.companyphone}}</ion-label><br>
+    <ion-icon name="locate-outline" slot="start"></ion-icon>
+    <ion-label> {{shopInfo.companyaddress}}</ion-label><br>
+    <ion-icon name="locate-outline" slot="start"></ion-icon>
+    <ion-label style="margin-left: 5px;"> <a [routerLink] (click)="goToLocation()"> Location on Google Map</a></ion-label><br>
+    </ion-label>
+  </ion-row>
+  </ion-grid> 
+
+</div>
+
+
+
+
+

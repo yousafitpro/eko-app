@@ -1,0 +1,145 @@
+
+<ion-content >
+  <ion-grid >
+    <ion-row>
+      <ion-icon [routerLink]="['/myshop/'+product.category_id+'/0'+'/Products']"  name="arrow-back-outline" style="font-size:20px;"></ion-icon>
+      </ion-row>
+      <ion-row>
+      <ion-col size="5">
+        <div class="img-thumbnail" style="width: 100px; height: 100px;">
+          <img  id="AddEmpImage"  style="width: 100px; height: 100px;" src="{{product.image}}" alt="">
+
+        </div>
+      </ion-col>
+      <ion-col size="5"  class="flex">
+
+ 
+        <ion-chip id="storage"   outline color="tertiary">
+          <ion-icon name="cloud-upload-outline"></ion-icon>
+          <ion-label> Storage</ion-label>
+        </ion-chip>
+        <ion-chip (click)="captureImage()"   outline color="tertiary">
+          <ion-icon name="camera-outline"></ion-icon>
+          <ion-label> Camera</ion-label>
+        </ion-chip>   
+        <ion-chip (click)="updateImage()"   outline color="tertiary">
+          <ion-label> Save Image</ion-label>
+        </ion-chip>                
+                       
+                            
+      
+
+
+        </ion-col>
+    </ion-row>
+    <ion-row >  
+      <ion-col size="12"  >
+               
+                 <ion-item>
+                  <ion-label position="floating">Name...</ion-label>
+                  <ion-input value="{{product.name}}" id="name"></ion-input>
+                 </ion-item>  
+      </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="4"><small>Tax</small></ion-col>
+    <ion-col size="4"><small>Discount</small></ion-col>
+    <ion-col size="4"><small>Brand</small></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="4"><input value="{{product.tax}}" type="number" id="tax" style="width: 100%;"></ion-col>
+      <ion-col size="4"><input value="{{product.discount}}" type="number" id="discount"  style="width: 100%;"></ion-col>
+      <ion-col size="4">
+        <select id="brand" style="width: 100%;" >
+          <option  value="{{product.brand_id}}">{{product.brand_name}}</option>
+          <option *ngFor="let b of brands" value="{{b.id}}">{{b.name}}</option>
+        </select>
+      </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="3"><small>Quantity</small></ion-col>
+        <ion-col size="3"><small>M-Price</small></ion-col>
+        <ion-col size="3"><small>R-Price</small></ion-col>
+        <ion-col size="3"><small>out of Stock at</small></ion-col>
+        </ion-row>
+    <ion-row>
+      <ion-col size="3"><input value="{{product.quantity}}" type="number" id="quantity"  style="width: 100%;"></ion-col>
+      <ion-col size="3"><input value="{{product.mprice}}" type="number" id="mprice"  style="width: 100%;"></ion-col>
+      <ion-col size="3"><input value="{{product.rprice}}" type="number" id="rprice"  style="width: 100%;"></ion-col>
+      <ion-col size="3"><input value="{{product.osl}}" type="number" id="osl"  style="width: 100%;"></ion-col>
+      </ion-row>
+      <br>
+  
+    <ion-row >  
+      <ion-col size="12"  >
+         
+                 <ion-item>
+                  <textarea id="shortdes" placeholder="Short-Description..." style="height: 10vh; width: 100%;">{{product.shortdescription}}</textarea>
+
+                 </ion-item>  
+      </ion-col>
+  </ion-row>
+  <ion-row >  
+    <ion-col size="12"  >
+
+               <ion-item>
+             <textarea id="longdes" placeholder="Long-Description..." style="height: 20vh; width: 100%;">{{product.longdescription}}</textarea>
+               </ion-item>  
+    </ion-col>
+</ion-row>
+
+<ion-row >  
+  <ion-col size="12" *ngFor="let field of AllFields"  >
+             <ion-item>
+              <ion-label position="floating">{{field.title}} :</ion-label>
+              <ion-input value="{{field.value}}" id="f{{field.id}}" ></ion-input>
+             </ion-item>  
+  </ion-col>
+</ion-row>
+<ion-row>
+<div class="row">
+  <div class="col-md-4">
+    <div class="form-group">
+      <div class="custom-control custom-switch">
+        <input type="checkbox" #sstatus class="custom-control-input AddSubAdminStatus" [checked]="status" id="customSwitch1">
+        <label class="custom-control-label"  for="customSwitch1" (click)="AddStatus(sstatus.checked)"><small> Status ShouId be Enabled </small></label>
+      </div>
+
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="custom-control custom-switch">
+      <input type="checkbox" #availbleonline class="custom-control-input AddSubAdminStatus" [checked]="issaleonline" id="customSwitch2">
+      <label class="custom-control-label"  for="customSwitch2" (click)="availebleOnline(availbleonline.checked)"><small> Available Online </small></label>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="custom-control custom-switch">
+      <input type="checkbox" #issinstallment class="custom-control-input AddSubAdminStatus" [checked]="i2isinstallment" id="customSwitch3">
+      <label class="custom-control-label"  for="customSwitch3" (click)="isinstallment(issinstallment.checked)"><small>installment Available  </small></label>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="custom-control custom-switch">
+      <input type="checkbox" #iisonsale class="custom-control-input AddSubAdminStatus" [checked]="i2isonsale" id="customSwitch4">
+      <label class="custom-control-label"  for="customSwitch4" (click)="isonsale(iisonsale.checked)"><small> On Sale </small></label>
+    </div>
+  </div>
+</div>
+</ion-row>
+<ion-row>
+<ion-col size="3"></ion-col>
+<ion-col size="3"></ion-col>
+<ion-col size="6">
+
+            
+    <ion-button  style="width: 100%;" (click)="update()">Update-Product</ion-button>
+
+</ion-col>
+</ion-row>
+</ion-grid>
+
+
+
+<!-- hidden field -->
+<input id="image"  type="file" style=" margin-left: 10px; visibility:hidden;"  (change)="onSelect($event)" accept='image/*'>

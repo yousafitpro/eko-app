@@ -1,0 +1,4 @@
+<ion-toolbar translucent>
+  <ion-title *ngIf="isLogged">{{user.name}}</ion-title>
+    <ion-title *ngIf="!isLogged">Welcome</ion-title>
+</ion-toolbar>

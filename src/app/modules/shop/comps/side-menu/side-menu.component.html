@@ -1,0 +1,57 @@
+
+<ion-toolbar>
+  <ion-item [routerLink]="['/shop/Shops']" (click)="hideMainMenu()"> 
+    <ion-icon name="home-outline" slot="start"></ion-icon>
+    <ion-label>Shops</ion-label>
+  </ion-item>
+</ion-toolbar>
+<ion-toolbar>
+  <ion-item [routerLink]="['/shop/Products']" (click)="hideMainMenu()"> 
+    <ion-icon name="cube-outline" slot="start"></ion-icon>
+    <ion-label>All Products</ion-label>
+  </ion-item>
+</ion-toolbar>
+<ion-toolbar *ngIf="isLogged">
+  <ion-item [routerLink]="['/shop/orders']" (click)="hideMainMenu()"> 
+    <ion-icon name="albums-outline" slot="start"></ion-icon>
+    <ion-label>Orders</ion-label>
+  </ion-item>
+</ion-toolbar>
+<ion-toolbar *ngIf="!isLogged" [routerLink]="['/shop/createAccount']" >
+  <ion-item (click)="hideMainMenu()" > 
+    <ion-icon name="person-add-outline" slot="start"></ion-icon>
+    <ion-label>Creat Account</ion-label>
+  </ion-item>
+</ion-toolbar>
+<ion-toolbar *ngIf="isLogged && user.usertype!='BMan'" [routerLink]="['/shop/becomeSeller']" >
+  <ion-item (click)="hideMainMenu()" > 
+    <ion-icon name="person-add-outline" slot="start"></ion-icon>
+    <ion-label>Become a Seller</ion-label>
+  </ion-item>
+</ion-toolbar>
+<ion-toolbar *ngIf="!isLogged">
+  <ion-item [routerLink]="['/shop/login']" (click)="hideMainMenu()"> 
+    <ion-icon name="log-in-outline" slot="start"></ion-icon>
+    <ion-label>Login</ion-label>
+  </ion-item>
+</ion-toolbar>
+<ion-toolbar >
+  <ion-item [routerLink]="['/shop/aboutus']" (click)="hideMainMenu()"> 
+    <ion-icon name="information-circle-outline" slot="start"></ion-icon>
+    <ion-label>About us</ion-label>
+  </ion-item>
+</ion-toolbar>
+<ion-toolbar *ngIf="isLogged">
+  <ion-item [routerLink]="['/shop/Products']" (click)="logout()"> 
+    <ion-icon name="log-out-outline" slot="start"></ion-icon>
+    <ion-label>Logout</ion-label>
+  </ion-item>
+</ion-toolbar>
+<ion-toolbar *ngIf="isLogged && user.usertype=='BMan'">
+  <!-- <ion-item [routerLink]  (click)="goToSellerMode()">  -->
+     <ion-item [routerLink]  (click)="goToSellerMode()"> 
+    <ion-icon name="arrow-forward-outline" slot="start"></ion-icon>
+    <ion-label>Seller Mode </ion-label>
+  </ion-item>
+</ion-toolbar>
+
