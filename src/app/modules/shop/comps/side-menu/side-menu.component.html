@@ -11,12 +11,12 @@
     <ion-label>All Products</ion-label>
   </ion-item>
 </ion-toolbar>
-<ion-toolbar *ngIf="isLogged">
+<!-- <ion-toolbar *ngIf="isLogged">
   <ion-item [routerLink]="['/shop/orders']" (click)="hideMainMenu()"> 
     <ion-icon name="albums-outline" slot="start"></ion-icon>
     <ion-label>Orders</ion-label>
   </ion-item>
-</ion-toolbar>
+</ion-toolbar> -->
 <ion-toolbar *ngIf="!isLogged" [routerLink]="['/shop/createAccount']" >
   <ion-item (click)="hideMainMenu()" > 
     <ion-icon name="person-add-outline" slot="start"></ion-icon>
