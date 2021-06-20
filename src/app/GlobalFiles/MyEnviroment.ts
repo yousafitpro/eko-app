@@ -8,9 +8,9 @@ export class MyEnviroment{
     public static AppID:any="001";
 
 
-    public static afterLoginUrl="http://localhost/product/eko-app/"
-    public static afterLogoutUrl="http://localhost/product/eko-app/"
-    public static refreshURL="http://localhost/product/eko-app/"
+    public static afterLoginUrl="http://localhost:8100/"
+    public static afterLogoutUrl="http://localhost:8100/"
+    public static refreshURL="http://localhost:8100/"
     // public static coreDomain:any="http://127.0.0.1:8000";
     // public static baseUrl:any=MyEnviroment.coreDomain+"/api/"; 
     // public static coreISS:any=MyEnviroment.coreDomain+"/api/auth/login";
